@@ -56,5 +56,6 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
   * The solution count per day for the Calendar Block Problem ranges from 65 to 1044. Only one day has more than 1,000 solutions.
  
 ## TODO
+  * Add the month name and day to the Calendar Block Problem's solution images.
   * Add solutions to other interesting problems.
   * Add the feature of reconstructing solutions from log files, even if the source code has changed since the log files were generated. This would involve changing the format of some of the log files. 
