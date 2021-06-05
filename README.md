@@ -39,12 +39,18 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
       * % ./chessboard_block_problem.py <MONTH> <DAY> where MONTH is one of Jan ... Dec, and DAY is one of 1 ... 31.
 
 ## Log files for each problem
-  * **layouts_**<*problem_name*>: All orientations of all blocks.
-  * **linfos_**<*problem_name*>: All orientations and positions (i.e., the "layout info") of all blocks.
-  * **plot_**<*problem_name*>.jpg: A diagram of the first solution found.
-  * **prob_**<*problem_name*>: The problem matrix.
-  * **solns_**<*problem_name*>: All solutions found. (Requires layouts and layout info data for interpretation.)
-  * **stats_**<*problem_name*>: Stats showing the number of nodes traversed ("updates") in the search tree, the number of solutions found, and the elapsed time spent.
+  * **layouts_**<*problem_name*>
+    * All orientations of all blocks.
+  * **linfos_**<*problem_name*>
+    * All orientations and positions (i.e., the "layout info") of all blocks.
+  * **plot_**<*problem_name*>.jpg
+    * A diagram of the first solution found.
+  * **prob_**<*problem_name*>
+    * The problem matrix.
+  * **solns_**<*problem_name*>
+    * All solutions found. (Requires layouts and layout info data for interpretation.)
+  * **stats_**<*problem_name*>
+    * Stats showing the number of nodes traversed ("updates") in the search tree, the number of solutions found, and the elapsed time spent.
 
 ## Trivia
   * The solution count per day for the Calendar Block Problem ranges from 65 to 1044. Only one day has more than 1,000 solutions.
