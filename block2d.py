@@ -12,7 +12,8 @@ class Block2D:
         self.reference_layout = reference_layout.astype(np.bool)
         self.layouts = self._get_layouts()
 
-    # TODO: Refactor. (Has outgrown its simple origin story.)
+    # TODO: Refactor to reduce recurrence of "file=file".
+    #   Originally this only printing to stdout, but was adapted for logging.
     def print(self, tag, file=sys.stdout):
         def as_int(x):
             return x.astype(np.int)
