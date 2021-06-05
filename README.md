@@ -5,7 +5,7 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
 * It solves a [Calendar Block Puzzle](https://www.dragonfjord.com/product/a-puzzle-a-day/) sold by the company [DragonFjord](https://www.dragonfjord.com/). For each date of the year, the challenge is to find an arrangement of the blocks that leaves that date's month and day uncovered, while covering every other space. This is an example of an [Exact Cover Problem]
 (https://en.wikipedia.org/wiki/Exact_cover).
 * It also solves a few variations of Dana Scott's chessboard problem from Donald Knuth's Dancing Links paper. I mainly wrote this to test the implementation of DLX.
-* As of initial check-in, this code takes just over 2 hours to find all solutions for all 366 days of the Calendar Block Puzzle. That's about 17 solutions per second (single-threaded).
+* As of initial check-in, this (non-concurrent, non-parallel) code running on a 2.2 GHz laptop takes 1:47:32 to find all solutions for all 366 days of the Calendar Block Puzzle. That's about 20 solutions per second.
 
 ## Source files
 * exact_cover_problem.py
