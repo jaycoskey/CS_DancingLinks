@@ -12,27 +12,28 @@ class Block2D:
         self.reference_layout = reference_layout.astype(np.bool)
         self.layouts = self._get_layouts()
 
-    # TODO: Refactor to reduce recurrence of "file=file".
-    #   Originally this only printing to stdout, but was adapted for logging.
     def print(self, tag, file=sys.stdout):
         def as_int(x):
             return x.astype(np.int)
 
-        def print_ndarray(ndarray, indent='', file=file):
+        def fprint(txt, **kwargs):
+            print(txt, file=file, **kwargs)
+
+        def print_ndarray(ndarray, indent=''):
             ndarray = as_int(ndarray)
             for row in ndarray:
-                print(indent, end='', file=file)
+                fprint(indent, end='')
                 for item in row:
-                    print(item, end='', file=file)
-                print(file=file)
+                    fprint(item, end='')
+                fprint('')
 
-        print(f'block ({tag}): {self.name}', file=file)
-        print('\treference_layout:', file=file)
-        print_ndarray(self.reference_layout, indent='\t\t', file=file)
+        fprint(f'block ({tag}): {self.name}')
+        fprint('\treference_layout:')
+        print_ndarray(self.reference_layout, indent='\t\t')
         for li, layout in enumerate(self.layouts):
-            print(f'\tlayout #{li}:', file=file)
-            print_ndarray(layout, indent='\t\t', file=file)
-            print('\t\t--------------------', file=file)
+            fprint(f'\tlayout #{li}:')
+            print_ndarray(layout, indent='\t\t')
+            fprint('\t\t--------------------')
 
     def _get_layouts(self):
         result = [self.reference_layout]
