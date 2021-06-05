@@ -7,6 +7,12 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
 * It also solves a few variations of Dana Scott's chessboard problem from Donald Knuth's Dancing Links paper. I mainly wrote this to test the implementation of DLX.
 * As of initial check-in, this (non-concurrent, non-parallel) code running on a 2.2 GHz laptop takes 1:47:32 to find all solutions for all 366 days of the Calendar Block Puzzle. That's about 20 solutions per second.
 
+## Sample solution plots
+
+| Chessboard Block Problem solution | Calendar Puzzle solution (Sep 19th) |
+:----------------------------------:|:------------------------------------:
+![](/images/plot_chessboard_block_problem_sub3.jpg) | ![](images/Sep19.jpg)
+
 ## Source files
 * exact_cover_problem.py
   * A base class and functions used to read and write problem and solution files related to the Exact Cover Problem.
