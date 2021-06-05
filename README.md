@@ -11,7 +11,7 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
 
 | Chessboard Block Problem solution | Calendar Puzzle solution (Sep 19th) |
 :----------------------------------:|:------------------------------------:
-![](/images/plot_chessboard_block_problem_sub3.jpg) | ![](images/Sep19.jpg)
+![](/images/plot_chessboard_block_problem_sub3.jpg) | ![](images/plot_Sep19.jpg)
 
 ## Source files
 * exact_cover_problem.py
