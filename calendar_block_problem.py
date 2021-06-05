@@ -11,15 +11,17 @@ from block2d_problem import Block2DProblem
 from exact_cover_problem import io_read_prob_matrix
 
 
+month_names = """Jan Feb Mar Apr May Jun
+                 Jul Aug Sep Oct Nov Dec""".split()
+days_per_month = [31, 29, 31, 30, 31, 30,  31, 31, 30, 31, 30, 31]
+
 # Month values: 0 .. 11
 # Day values: 1 .. 31
 class CalendarBlockProblem(Block2DProblem):
-    month_names = """Jan Feb Mar Apr May Jun
-                  Jul Aug Sep Oct Nov Dec""".split()
     def __init__(self, month, day):
         def date_str(month, day):
             assert(0 <= month <= 11)
-            return f'{CalendarBlockProblem.month_names[month]}{day:02}'
+            return f'{month_names[month]}{day:02}'
 
         self.month = month
         self.day = day
@@ -90,30 +92,42 @@ def solve_calendar_problems(do_batch=False):
         for day in range(1, days_per_month[month] + 1):
             solve_calendar_problem(month, day, do_batch)
 
-    days_per_month = [31, 29, 31, 30, 31, 30,  31, 31, 30, 31, 30, 31]
     for month in range(12):
         solve_month(month)
 
 
-if __name__ == '__main__':
-    do_batch = len(sys.argv) == 2 and sys.argv[1] == '--batch'
-    if len(sys.argv) == 1 or do_batch:
-        solve_calendar_problems(do_batch)
-    else:
-        print(f'Unrecognized args: {sys.argv[1:]}')
+def usage():
+    def eprint(foo):
+        print(foo, file=sys.stderr)
 
-    # TODO: Read in solutions from log files,
-    #       including all info needed for interpretation,
-    #       even if code has changed since the log files were generated.
-    #
-    # if len(sys.argv) == 4 and sys.argv[1] == '--plot_solns':
-    #     prob_filename = sys.argv[2]
-    #     solns_filename = sys.argv[3]
-    #     prob = CalendarBlockProblem(0, 0)
-    #     prob.load_prob(prob_filename)
-    #     prob.load_solns(solns_filename)
-    #     for soln in prob.solns:
-    #         prob.plot_solution(soln,
-    #                            plot_filename=None,
-    #                            do_save_plot=False,
-    #                            do_display=True)
+    eprint(f'Unrecognized args: {sys.argv[1:]}')
+    eprint('Usage: calendar_block_problem.py [Options]')
+    eprint('Options:')
+    eprint('\t* --batch: Run for all dates without displaying plot images')
+    eprint('\t* --date MONTH DAY: Run for the specified date only')
+    eprint('\t\tMONTH should be one of Jan, Feb, ... Dec')
+    eprint('\t\tDAY should be an integer in the range 1 .. 31')
+    eprint('Without no options, all dates are solved, and plots displayed')
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        solve_calendar_problems()
+    elif len(sys.argv) == 2 and sys.argv[1] == '--batch':
+        solve_calendar_problems(do_batch=True)
+    elif len(sys.argv) == 4 and sys.argv[1] == '--date':
+        month_str = sys.argv[2]
+        day_str = sys.argv[3]
+        months = [(m, name) for (m, name) in enumerate(month_names)
+                  if name.lower() == month_str.lower()]
+        day = int(day_str)
+
+        has_error = False
+        if not months:
+            print(f'Error: Unrecognized month name: {month_str}')
+        else:
+            month = months[0][0]
+            if 0 <= day <= days_per_month[month]:
+                solve_calendar_problem(month, day)
+    else:
+        usage()

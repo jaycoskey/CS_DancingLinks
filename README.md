@@ -36,6 +36,7 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
     * To compute solutions to Data Scott's Chessboard Block Problem, and a few of its variations, choose one of:
       * % make chessboard
       * % make chessboard_batch
+      * % ./chessboard_block_problem.py <MONTH> <DAY> where MONTH is one of Jan ... Dec, and DAY is one of 1 ... 31.
 
 ## Log files for each problem
   * **layouts_**<*problem_name*>: All orientations of all blocks.
