@@ -15,12 +15,15 @@ month_names = """Jan Feb Mar Apr May Jun
                  Jul Aug Sep Oct Nov Dec""".split()
 days_per_month = [31, 29, 31, 30, 31, 30,  31, 31, 30, 31, 30, 31]
 
+
+DO_RESTRICT_DATES = True
+
+
 # Month values: 0 .. 11
 # Day values: 1 .. 31
 class CalendarBlockProblem(Block2DProblem):
     def __init__(self, month, day):
         def date_str(month, day):
-            assert(0 <= month <= 11)
             return f'{month_names[month]}{day:02}'
 
         self.month = month
@@ -32,9 +35,8 @@ class CalendarBlockProblem(Block2DProblem):
             # Can now call self.load_prob(prob_filename)
             return
 
-        assert(0 <= month <= 11)
-        days_per_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        assert(0 <= day <= days_per_month[month])
+        assert(month in range(12))
+        assert(day in range(31))
 
         self.name = date_str(month, day)
         self.blocks = self._get_blocks()
@@ -42,15 +44,11 @@ class CalendarBlockProblem(Block2DProblem):
         self.prob_matrix = self._get_prob_matrix()
 
     def _get_blocks(self):
-        calendar_pentominos = [b for b in pentominos if b.name in 'LNUVYZ']
-        block_a = Block2D('A', np.array([[1]]))
-        block_b = Block2D('B', np.array(
-                     [[1, 1],
-                      [1, 1]]))
-        block_c = Block2D('C', np.array(
+        calendar_pentominos = [b for b in pentominos if b.name in 'LNPUVYZ']
+        block_o = Block2D('O', np.array(
                      [[1, 1, 1],
                       [1, 1, 1]]))
-        return calendar_pentominos + [block_a, block_b, block_c]
+        return calendar_pentominos + [block_o]
 
     def _get_board(self):
         result = np.array(
@@ -127,7 +125,16 @@ if __name__ == '__main__':
             print(f'Error: Unrecognized month name: {month_str}')
         else:
             month = months[0][0]
-            if 0 <= day <= days_per_month[month]:
-                solve_calendar_problem(month, day)
+            valid_day_range = (
+                    range(1, days_per_month[month] + 1) if DO_RESTRICT_DATES
+                    else range(1, 31 + 1)
+                    )
+            if day not in valid_day_range:
+                if DO_RESTRICT_DATES:
+                    msg = f'Dates for that month must range from 1 to {days_per_month[month]}'
+                    printf(f'Error: {msg}')
+                else:
+                    printf(f'Error: Dates must range from 1 to 31')
+            solve_calendar_problem(month, day)
     else:
         usage()
