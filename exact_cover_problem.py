@@ -8,7 +8,7 @@ class ExactCoverProblem:
     def get_filename(self, prob_name, category):
         result = f'{prob_name}/{category}_{prob_name}'
         if category == 'plot':
-            result += '.jpg'
+            result += '.png'
         return result
 
     def io_read_solutions(self, solns_filename):

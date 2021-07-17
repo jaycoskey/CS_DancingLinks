@@ -97,7 +97,7 @@ class Block2DProblem(ExactCoverProblem):
         if do_display:
             plt.show()
         if do_save_plot:
-            fig.savefig(fname=plot_filename, format='jpg')
+            fig.savefig(fname=plot_filename, format='png')
 
     def set_solutions(self, solns):
         self.solutions = solns

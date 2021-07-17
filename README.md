@@ -10,7 +10,7 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
 
 | Chessboard Block Problem solution | Calendar Puzzle solution (Sep 19th) |
 :----------------------------------:|:------------------------------------:
-![](/images/plot_chessboard_block_problem_sub3.jpg) | ![](images/plot_Sep19.jpg)
+![](/images/plot_chessboard_block_problem_sub3.png) | ![](images/plot_Sep19.png)
 
 ## Source files
 * exact_cover_problem.py
@@ -42,7 +42,7 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
     * All orientations of all blocks.
   * **linfos_**<*problem_name*>
     * All orientations and positions (i.e., the "layout info") of all blocks.
-  * **plot_**<*problem_name*>.jpg
+  * **plot_**<*problem_name*>.png
     * A diagram of the first solution found.
   * **prob_**<*problem_name*>
     * The problem matrix.
