@@ -12,21 +12,7 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
 :----------------------------------:|:------------------------------------:
 ![](/images/plot_chessboard_block_problem_sub3.png) | ![](images/plot_Sep19.png)
 
-## Source files
-* exact_cover_problem.py
-  * A base class and functions used to read and write problem and solution files related to the Exact Cover Problem.
-* block2d.py
-  * A base class to represent the blocks in block puzzles
-* block2d_problem.py
-  * A class to represent the 2D block puzzles---a particular type of Exact Cover Problem.
-* calendar_block_problem.py
-  * Solves all 366 instances of the Calendar Block Problem.
-* chessboard_block_problem.py
-  * Solves Dana Scott's chessboard-based bloc problem, including a few variations.
-* dlx.py
-  * An implementation of Knuth's "Dancing Links" or DLX algorithm.
-
-## Running
+## How to find solutions
   * Calendar
     * To compute solutions to each of the 366 Calendar Block Problem variations, choose one of:
       * % make calendar
@@ -36,6 +22,11 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
       * % make chessboard
       * % make chessboard_batch
       * % ./chessboard_block_problem.py <MONTH> <DAY> where MONTH is one of Jan ... Dec, and DAY is one of 1 ... 31.
+
+## How many solutions to the calendar problem are there?
+
+The number of solutions per day for the calendar problem ranges from 7 (for October 6th) to 216 (for January 25th). For the entire year, there are 24,405. Here's a diagram showing the distribution.
+![](/images/calendar_block_problem_solutions_by_date.png)
 
 ## Log files for each problem
   * **layouts_**<*problem_name*>
@@ -50,6 +41,20 @@ The code in this directory uses Knuth's [Dancing Links](https://en.wikipedia.org
     * All solutions found. (Requires layouts and layout info data for interpretation.)
   * **stats_**<*problem_name*>
     * Stats showing the number of nodes traversed ("updates") in the search tree, the number of solutions found, and the elapsed time spent.
+
+## Source files
+* exact_cover_problem.py
+  * A base class and functions used to read and write problem and solution files related to the Exact Cover Problem.
+* block2d.py
+  * A base class to represent the blocks in block puzzles
+* block2d_problem.py
+  * A class to represent the 2D block puzzles---a particular type of Exact Cover Problem.
+* calendar_block_problem.py
+  * Solves all 366 instances of the Calendar Block Problem.
+* chessboard_block_problem.py
+  * Solves Dana Scott's chessboard-based bloc problem, including a few variations.
+* dlx.py
+  * An implementation of Knuth's "Dancing Links" or DLX algorithm.
 
 ## Trivia
   * The solution count per day for the Calendar Block Problem ranges from 65 to 1044. Only one day has more than 1,000 solutions.
