@@ -22,6 +22,16 @@ DO_RESTRICT_DATES = True
 # Month values: 0 .. 11
 # Day values: 1 .. 31
 class CalendarBlockProblem(Block2DProblem):
+    base_board = np.array(
+            [[1, 1, 1, 1, 1, 1, 0],
+             [1, 1, 1, 1, 1, 1, 0],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 0, 0, 0, 0]],
+            dtype=np.bool)
+
     def __init__(self, month, day):
         def date_str(month, day):
             return f'{month_names[month]}{day:02}'
@@ -51,19 +61,13 @@ class CalendarBlockProblem(Block2DProblem):
         return calendar_pentominos + [block_o]
 
     def _get_board(self):
-        result = np.array(
-            [[1, 1, 1, 1, 1, 1, 0],
-             [1, 1, 1, 1, 1, 1, 0],
-             [1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 0, 0, 0, 0]],
-            dtype=np.bool)
-        result[int(self.month / 6), self.month % 6] = 0
+        board = CalendarBlockProblem.base_board.copy()
+        hole1 = (int(self.month / 6), self.month % 6)
         d1 = self.day - 1
-        result[2 + int(d1 / 7), d1 % 7] = 0
-        return result
+        hole2 = (2 + int(d1 / 7), d1 % 7)
+        board[hole1] = 0
+        board[hole2] = 0
+        return board
 
     def load_prob(self, prob_filename):
         basename = os.path.basename(prob_filename)
@@ -132,9 +136,9 @@ if __name__ == '__main__':
             if day not in valid_day_range:
                 if DO_RESTRICT_DATES:
                     msg = f'Dates for that month must range from 1 to {days_per_month[month]}'
-                    printf(f'Error: {msg}')
+                    print(f'Error: {msg}')
                 else:
-                    printf(f'Error: Dates must range from 1 to 31')
+                    print(f'Error: Dates must range from 1 to 31')
             solve_calendar_problem(month, day)
     else:
         usage()
